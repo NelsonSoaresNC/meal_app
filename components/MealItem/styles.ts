@@ -22,16 +22,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 8,
         overflow: Platform.OS === "android" ? "hidden" : "visible"
     },
-    details: {
-        flexDirection: "row",
-        alignItems: "center",
-        padding: 8,
-        justifyContent: "center"
-    },
-    dateailItem: {
-        marginHorizontal: 4,
-        fontSize: 12
-    },
+  
     innerContainer: {
         borderRadius: 8,
         overflow: "hidden"
