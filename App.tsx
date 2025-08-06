@@ -4,17 +4,38 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MealsOverScreen from './screens/MealsOverViewScreen';
+import MealDetailScreen from './screens/MealDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      <StatusBar style='dark' />
+      <StatusBar style='light' />
       <NavigationContainer >
-        <Stack.Navigator>
-          <Stack.Screen name="MealsCategories" component={CategoriesScreen}/>
-          <Stack.Screen name="MealsOverview" component={MealsOverScreen} />
+        <Stack.Navigator screenOptions={{
+          headerStyle: { backgroundColor: "#ba0000ff" },
+          headerTintColor: "white",
+          contentStyle: { backgroundColor: "#3f2f25" }
+        }}>
+          <Stack.Screen
+            name="MealsCategories"
+            component={CategoriesScreen}
+            options={{
+              title: "Meals Categories",
+
+            }}
+          />
+          <Stack.Screen 
+            name="MealsOverview" 
+            component={MealsOverScreen}
+           
+            />
+
+          <Stack.Screen 
+            name='MealDetail'
+            component={MealDetailScreen}  
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

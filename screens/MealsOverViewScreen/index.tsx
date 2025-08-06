@@ -1,18 +1,28 @@
-import { FlatList, Text, View } from "react-native";
-import { styles } from "./styles";
-import { useRoute } from "@react-navigation/native";
-import { MEALS } from "../../data/dummy-data";
+import { FlatList, View } from "react-native";
 import MealItem from "../../components/MealItem";
+import { CATEGORIES, MEALS } from "../../data/dummy-data";
+import { styles } from "./styles";
+import { useLayoutEffect } from "react";
 
-export default function MealsOverScreen({route}:any){
+
+export default function MealsOverScreen({ route, navigation }: any) {
 
     const categoryId = route.params.categoryId;
-    const displayedMeals = MEALS.filter((mealItem)=> {
-        return mealItem.categoryId.indexOf(categoryId) >=0;
+    const displayedMeals = MEALS.filter((mealItem) => {
+        return mealItem.categoryId.indexOf(categoryId) >= 0;
     });
 
-    function renderMealItem(itemData: any){
+    useLayoutEffect(() => {
+        const categoryTitle = CATEGORIES.find((category) => category.id === categoryId)?.title;
+        navigation.setOptions({
+            title: categoryTitle
+        });
+    }, [categoryId, navigation]);
+
+
+    function renderMealItem(itemData: any) {
         const mealItemProps = {
+            id: itemData.item.id,
             title: itemData.item.title,
             imageUrl: itemData.item.imageUrl,
             affordability: itemData.item.affordability,
@@ -20,15 +30,15 @@ export default function MealsOverScreen({route}:any){
             duration: itemData.item.duration
         }
         return (
-           <MealItem {...mealItemProps} />
+            <MealItem {...mealItemProps} />
         );
     }
     return (
         <View style={styles.container}>
-            <FlatList 
-            data={displayedMeals} 
-            keyExtractor={(item)=>item.id} 
-            renderItem={renderMealItem}
+            <FlatList
+                data={displayedMeals}
+                keyExtractor={(item) => item.id}
+                renderItem={renderMealItem}
             />
         </View>
     );
