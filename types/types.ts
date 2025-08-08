@@ -1,4 +1,4 @@
-export type RootStackParamList = {
+export type NavigationType = {
   MealsCategories: undefined;
   MealsOverview: { categoryId: string };
   MealDetail: { mealId: string };

@@ -1,7 +1,6 @@
-import { styles } from "./styles";
-import { CATEGORIES } from "../../data/dummy-data";
-import { Text, View, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import CategoryGridTile from "../../components/CategoryGridTile";
+import { CATEGORIES } from "../../data/dummy-data";
 
 
 
