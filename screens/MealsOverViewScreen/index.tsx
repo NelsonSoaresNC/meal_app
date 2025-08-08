@@ -3,6 +3,7 @@ import MealItem from "../../components/MealItem";
 import { CATEGORIES, MEALS } from "../../data/dummy-data";
 import { styles } from "./styles";
 import { useLayoutEffect } from "react";
+import MealsList from "../../components/MealsList";
 
 
 export default function MealsOverScreen({ route, navigation }: any) {
@@ -19,27 +20,5 @@ export default function MealsOverScreen({ route, navigation }: any) {
         });
     }, [categoryId, navigation]);
 
-
-    function renderMealItem(itemData: any) {
-        const mealItemProps = {
-            id: itemData.item.id,
-            title: itemData.item.title,
-            imageUrl: itemData.item.imageUrl,
-            affordability: itemData.item.affordability,
-            complexity: itemData.item.complexity,
-            duration: itemData.item.duration
-        }
-        return (
-            <MealItem {...mealItemProps} />
-        );
-    }
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={displayedMeals}
-                keyExtractor={(item) => item.id}
-                renderItem={renderMealItem}
-            />
-        </View>
-    );
+    return <MealsList  items={displayedMeals}/>
 }
